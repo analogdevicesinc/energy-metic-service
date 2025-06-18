@@ -1,0 +1,145 @@
+/******************************************************************************
+ Copyright (c) 2024  Analog Devices Inc. All Rights Reserved.
+ This software is proprietary & confidential to Analog Devices, Inc.
+ and its licensors.
+******************************************************************************/
+
+{
+	"folders": [
+		{
+			"name": "vscode",
+			"path": ".."
+		},
+		{
+			"name": "simple_example",
+			"path": "../../../"
+		},
+		{
+			"name": "include",
+			"path": "../../../../include/interface"
+		},
+		{
+			"name": "source",
+			"path": "../../../../source/interface",
+		},
+		{
+			"name": "metic_source",
+			"path": "../../../../../source"
+		},
+		{
+			"name": "metic_include",
+			"path": "../../../../../include"
+		},
+		{
+			"name": "ade_registers",
+			"path": "../../../../../ade_registers/ade9178"
+		},
+		{
+			"name": "board_support_maxim",
+			"path": "../../../../../board_support/max"
+		},
+		{
+			"name": "board_support_generic",
+			"path": "../../../../../board_support/generic"
+		},
+	],
+
+	"settings": {
+		"files.exclude": {
+			"**/eval_ade9178_slave": true,
+			"**/jever_ade9178": true,
+			"**/vscode/max32670": true
+		},
+		"terminal.integrated.env.windows": {
+			"Path":"${config:OCD_path};${config:ARM_GCC_path}/bin;${config:xPack_GCC_path}/bin;${config:MSYS_path}/usr/bin;${config:Make_path};${env:PATH}",
+			"MAXIM_PATH": "${config:MAXIM_PATH}"
+		},
+		"terminal.integrated.defaultProfile.windows": "Command Prompt",
+		"files.trimTrailingWhitespace": true,
+
+		"target":"MAX32670",
+		"board":"EvKit_V1",
+		"target_rev":"0x4131",
+
+		"project_name":"ade9178_simple_example",
+
+		"program_file":"${config:project_name}.hex",
+		"symbol_file":"${config:program_file}",
+
+		"M4_OCD_interface_file":"cmsis-dap.cfg",
+		"M4_OCD_target_file":"${config:target}.cfg",
+		"RV_OCD_interface_file":"ftdi/olimex-arm-usb-ocd-h.cfg",
+		"RV_OCD_target_file":"${config:target}_riscv.cfg",
+
+		"v_Arm_GCC":"10.3",
+		"v_xPack_GCC":"10.2.0-1.2",
+
+		"OCD_path":"${config:MAXIM_PATH}/Tools/OpenOCD",
+		"ARM_GCC_path":"${config:MAXIM_PATH}/Tools/GNUTools/${config:v_Arm_GCC}",
+		"xPack_GCC_path":"${config:MAXIM_PATH}/Tools/xPack/riscv-none-embed-gcc/${config:v_xPack_GCC}",
+		"Make_path":"${config:MAXIM_PATH}/Tools/GNUTools/Make",
+		"MSYS_path":"${config:MAXIM_PATH}/Tools/MSYS2",
+
+		"C_Cpp.default.intelliSenseMode": "gcc-arm",
+		"C_Cpp.default.compilerPath": "${config:ARM_GCC_path}/bin/arm-none-eabi-gcc.exe",
+
+		/* Set the path to header files that will be searched by the Intellisense engine when
+		   using "Go to Declaration" in the editor. */
+		"C_Cpp.default.includePath": [
+			"${workspaceFolder:vscode}",
+			"${workspaceFolder:vscode}/**",
+			"${workspaceFolder:include}",
+			"${workspaceFolder:simple_example}/config",
+			"${workspaceFolder:include}/interface",
+			"${workspaceFolder:include}/config",
+			"${workspaceFolder:metic_include}",
+			"${workspaceFolder:crc}/include",
+			"${workspaceFolder:services_include}",
+            "${workspaceFolder:nvm}/include",
+			"${workspaceFolder:board_support_maxim}/include",
+            "${workspaceFolder:board_support_maxim}/eval_ade9178/include",
+			"${workspaceFolder:board_support_maxim}/eval_ade9178/include/config",
+			"${workspaceFolder:board_support_generic}/include",
+            "${workspaceFolder:cli}/include",
+			"${workspaceFolder:ade_registers}",
+			"${config:MAXIM_PATH}/Libraries/CMSIS/Device/Maxim/${config:target}/Include",
+			"${config:MAXIM_PATH}/Libraries/CMSIS/Include",
+			"${config:ARM_GCC_path}/arm-none-eabi/include",
+			"${config:ARM_GCC_path}/lib/gcc/arm-none-eabi/${config:v_Arm_GCC}/include",
+			"${config:MAXIM_PATH}/Libraries/PeriphDrivers/Include/${config:target}",
+			"${config:MAXIM_PATH}/Libraries/PeriphDrivers/Source/**",
+		],
+
+		/* Set the path to implementation files that will be searched by the Intellisense engine when
+		   using "Go to Definition" in the editor. */
+		"C_Cpp.default.browse.path": [
+			"${workspaceFolder:vscode}",
+			"${workspaceFolder:source}",
+			"${workspaceFolder:source}/interface",
+			"${workspaceFolder:metic_source}",
+			"${workspaceFolder:crc}",
+			"${workspaceFolder:nvm}",
+            "${workspaceFolder:cli}",
+			"${workspaceFolder:ade_registers}",
+		],
+
+		/* Set the compiler definitions to use for the Intellisense engine */
+		"C_Cpp.default.defines": [
+			"${config:board}",
+			"BOARD=${config:board}",
+			"${config:target}",
+			"TARGET=${config:target}",
+			"TARGET_REV=${config:target_rev}",
+			"__GNUC__",
+			"MXC_ASSERT_ENABLE=1",
+		],
+		"C_Cpp.default.forcedInclude": [
+			"${workspaceFolder:vscode}/build/project_defines.h"
+		],
+		"C_Cpp.autoAddFileAssociations": false,
+		"C_Cpp.default.browse.limitSymbolsToIncludedHeaders": false,
+		"cortex-debug.variableUseNaturalFormat": false,
+		"stm32-for-vscode.openOCDPath": false,
+		"stm32-for-vscode.makePath": false,
+	}
+}
