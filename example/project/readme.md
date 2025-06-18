@@ -17,6 +17,6 @@ All modules except the MAXIM drivers are included in source form. MAXIM drivers 
 - Stores all configuration settings in Flash memory by issuing appropriate command.
 - Supports waveform sample collection (PCF or ADC samples).
 
-For communication details, GUI information, and supported CLI commands, refer to the [User Guide](../../docs/ADSW-ADE9178-MET-EXAMPLE.1.1.0_UsersGuide.pdf).
+For communication details, GUI information, and supported CLI commands, refer to the [User Guide](../../docs/ADE9178ExampleUserGuide.pdf).
 
 

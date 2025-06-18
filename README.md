@@ -10,7 +10,7 @@
 - [Directory Structure](#directory-structure)
 - [Example Directory Structure](#example-directory-structure)
 - [Building and Running Examples](#building-and-running-examples)
-- [Porting to different MCU](#porting-to-different-mcu)
+- [Porting Example to Different Boards](#porting-example-to-different-boards)
 - [Building API Documentation](#building-api-documentation)
 - [Contributing](#contributing)
 - [License](#license)
@@ -52,7 +52,7 @@ See the [example readme](example/readme.md) for instructions on building and run
 
 ## Porting Example to Different Boards
 
-Refer to the [porting guide](example/porting_guide.md) for intsruction to port the example to other boards
+Refer to the [porting guide](example/readme_porting.md) for intsruction to port the example to other boards
 
 ## Building API Documentation
 
@@ -79,7 +79,7 @@ Licensed under the [Apache 2.0 License](LICENSE).
 
 ## Contact
 
-For questions or support, open an issue on [GitHub](https://github.com/analogdevicesinc/energy-metrology-example/issues) or contact the maintainers listed in the repository.
+For questions or support, open an issue on [GitHub](https://github.com/analogdevicesinc/energy-ade9178-example/issues) or contact the maintainers listed in the repository.
 
 ## References
 
