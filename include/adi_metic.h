@@ -425,8 +425,7 @@ ADI_METIC_STATUS adi_metic_Close(ADI_METIC_HANDLE hMetIc);
  * @brief Configures UART baudrate given in configuration only if
  * ADI_METIC_WFS_ADE9178_REG_CONFIG.enable = 1 and minimum of one channel to be enabled in
  * ADI_METIC_WFS_ADE9178_REG_CONFIG.channelSelect to collect samples. Copies configuration into
- * internal data to use this for other APIs. Format of the config is shown below: \n
- * \image html "wfs_config_format.png"
+ * internal data to use this for other APIs. Refer to #ADE9178_REG_WFS_CONFIG for bitfield details.
  * @param[in] hMetIc - Metrology Servie handle.
  * @param[in] config - configuration of wfs.
  * @returns #ADI_METIC_STATUS_SUCCESS \n
