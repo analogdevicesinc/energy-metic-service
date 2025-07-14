@@ -19,14 +19,11 @@ set(INCLUDE # ADC application includes
 			${METIC_SERVICE_DIR}/include
       ${METIC_SERVICE_DIR}/ade_registers/ade9178/include)
 
-include(CMakePrintHelpers)
-cmake_print_variables(ZEPHYR_BUILD CMAKE_CURRENT_LIST_DIR CMAKE_BINARY_DIR)
-
-  # Set the project name
-  project(metic_service)
-  # Baremetal build
-  # Add the executable
-  add_library(metic_service ${SRC})
+# Set the project name
+project(metic_service)
+# Baremetal build
+# Add the executable
+add_library(metic_service ${SRC})
 
 #Provide include path of app_cfg to mathop
 target_include_directories(metic_service PUBLIC ${INCLUDE})

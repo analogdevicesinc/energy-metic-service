@@ -11,10 +11,10 @@
 
 /*==========================  I N C L U D E S   ==========================*/
 
+#include "adi_ade9178_cmd_format.h"
 #include "adi_metic.h"
 #include "adi_metic_private.h"
 #include "adi_metic_status.h"
-#include "app_cfg.h"
 #include <stddef.h>
 #include <stdint.h>
 
@@ -68,17 +68,21 @@ ADI_METIC_STATUS adi_metic_SendCmdGetResponse(ADI_METIC_HANDLE hAde, uint8_t dev
 
         if (status == ADI_METIC_STATUS_SUCCESS)
         {
-            status = pInfo->meticConfig.pfVerifyRespCrc(
-                pInfo->meticConfig.hUser, (uint8_t *)pReceivedData, *pNumReceivedBytes);
-            if (status != 0)
+            if (pInfo->meticConfig.pfVerifyRespCrc != NULL)
             {
-                status = ADI_METIC_STATUS_FRAME_CRC_ERROR;
-            }
-            else
-            {
-                if (pInfo->isHostErr == 1)
+                status = pInfo->meticConfig.pfVerifyRespCrc(
+                    pInfo->meticConfig.hUser, (uint8_t *)pReceivedData, *pNumReceivedBytes);
+
+                if (status != 0)
                 {
-                    status = ADI_METIC_STATUS_METIC_RETURNED_ERROR;
+                    status = ADI_METIC_STATUS_FRAME_CRC_ERROR;
+                }
+                else
+                {
+                    if (pInfo->isHostErr == 1)
+                    {
+                        status = ADI_METIC_STATUS_METIC_RETURNED_ERROR;
+                    }
                 }
             }
         }
@@ -91,18 +95,20 @@ ADI_METIC_STATUS SendCmd(ADI_METIC_INFO *pInfo, uint8_t device, uint16_t addr, u
 {
     ADI_METIC_STATUS status = ADI_METIC_STATUS_SUCCESS;
     int32_t transferStatus;
-    uint32_t numCmdBytes = sizeof(ADI_METIC_CMD);
+    uint32_t numCmdBytes = sizeof(ADI_ADE9178_CMD);
     pInfo->isHostRdy = 0;
     pInfo->isHostErr = 0;
-    ADI_METIC_CMD *pCmd = &pInfo->cmd;
+    ADI_ADE9178_CMD *pCmd = &pInfo->cmd;
     pCmd->addr = addr;
     pCmd->rwb = cmd & 0x1;
     pCmd->device = device & 0x7;
     pCmd->numRegisters = numRegisters;
     pCmd->data = data;
-    status = pInfo->meticConfig.pfAddCmdCrc(pInfo->meticConfig.hUser, (uint8_t *)pCmd,
-                                            numCmdBytes - ADI_METIC_NUM_CRC_BYTES);
-
+    if (pInfo->meticConfig.pfAddCmdCrc != NULL)
+    {
+        pCmd->crc = pInfo->meticConfig.pfAddCmdCrc(pInfo->meticConfig.hUser, (uint8_t *)pCmd,
+                                                   numCmdBytes - ADI_ADE9178_CRC_SIZE);
+    }
     if (pInfo->meticConfig.pfCmdTransfer != NULL)
     {
         transferStatus = pInfo->meticConfig.pfCmdTransfer(pInfo->meticConfig.hUser, (uint8_t *)pCmd,
@@ -133,7 +139,7 @@ ADI_METIC_STATUS GetResponse(ADI_METIC_INFO *pInfo, uint16_t cmd, uint32_t numRe
     {
         *pNumReceivedBytes = numRegisters * sizeof(uint32_t);
     }
-    numBytes = *pNumReceivedBytes + ADI_METIC_NUM_CRC_BYTES;
+    numBytes = *pNumReceivedBytes + ADI_ADE9178_CRC_SIZE;
     if (pInfo->meticConfig.pfResponseReceive != NULL)
     {
         receiveStatus = pInfo->meticConfig.pfResponseReceive(pInfo->meticConfig.hUser,

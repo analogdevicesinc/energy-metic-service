@@ -38,8 +38,6 @@ extern "C" {
 #define ADI_METIC_MAX_NUM_POWER_CHANNELS 3
 /** Maximum numer of channels */
 #define ADI_METIC_MAX_NUM_CHANNELS 12
-/** number of crc bytes  */
-#define ADI_METIC_NUM_CRC_BYTES 2
 /** read command  */
 #define ADI_METIC_CMD_READ_REGISTER 0x01
 /** write command  */
@@ -81,7 +79,7 @@ typedef int32_t (*ADI_METIC_WAIT_SUSPEND_FUNC)(void *, volatile uint8_t *);
 /** Function pointer definition for generic user defined functions */
 typedef int32_t (*ADI_METIC_EVENT_FUNC)(uint32_t, void *);
 /** Function pointer definition for suspend */
-typedef int32_t (*ADI_METIC_CRC_FUNC)(void *, uint8_t *, uint32_t);
+typedef uint16_t (*ADI_METIC_CRC_FUNC)(void *, uint8_t *, uint32_t);
 
 /** A device handle used in all API functions to identify the instance.
  *  It is obtained from the #adi_metic_Create API. */
@@ -99,29 +97,6 @@ typedef enum
     /** Response is completed*/
     ADI_METIC_MASTER_EVENT_TYPE_RESP_COMPLETED
 } ADI_METIC_MASTER_EVENT_TYPE;
-
-/**
- * @brief scomm service parameters
- */
-
-#pragma pack(push, 1)
-typedef struct
-{
-    /** read or write */
-    uint32_t rwb : 1; // 1 - read, 0 - write
-    /** device num */
-    uint32_t device : 7;
-    /** num of registers */
-    uint32_t numRegisters : 8;
-    /** adress */
-    uint32_t addr : 16;
-    /** data */
-    int32_t data;
-    /** crc */
-    uint16_t crc;
-
-} ADI_METIC_CMD;
-#pragma pack(pop)
 
 /**
  * Enumeration for Metrology Service Configurations
@@ -425,8 +400,7 @@ ADI_METIC_STATUS adi_metic_Close(ADI_METIC_HANDLE hMetIc);
  * @brief Configures UART baudrate given in configuration only if
  * ADI_METIC_WFS_ADE9178_REG_CONFIG.enable = 1 and minimum of one channel to be enabled in
  * ADI_METIC_WFS_ADE9178_REG_CONFIG.channelSelect to collect samples. Copies configuration into
- * internal data to use this for other APIs. Format of the config is shown below: \n
- * \image html "wfs_config_format.png"
+ * internal data to use this for other APIs. Refer to #ADE9178_REG_WFS_CONFIG for bitfield details.
  * @param[in] hMetIc - Metrology Servie handle.
  * @param[in] config - configuration of wfs.
  * @returns #ADI_METIC_STATUS_SUCCESS \n

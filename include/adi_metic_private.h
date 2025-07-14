@@ -13,6 +13,7 @@
 
 /*=============  I N C L U D E S   =============*/
 
+#include "adi_ade9178_cmd_format.h"
 #include "adi_metic.h"
 #include <stdint.h>
 
@@ -55,7 +56,7 @@ typedef struct
     /**  startup is complete */
     uint8_t startupDone;
     /** commad format */
-    ADI_METIC_CMD cmd;
+    ADI_ADE9178_CMD cmd;
     /** Last error status */
     int32_t errorStatus;
 

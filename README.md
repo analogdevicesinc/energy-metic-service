@@ -9,8 +9,9 @@
 - [Introduction](#introduction)
 - [Directory Structure](#directory-structure)
 - [Example Directory Structure](#example-directory-structure)
-- [Building and Running Examples](#building-and-running-examples)
-- [Porting to different MCU](#porting-to-different-mcu)
+- [Building, Running, and Debugging Examples](#building-running-and-debugging-examples)
+- [Porting MetIC Service to Different Applications](#porting-metic-service-to-different-applications)
+- [Porting Example to Different Boards](#porting-example-to-different-boards)
 - [Building API Documentation](#building-api-documentation)
 - [Contributing](#contributing)
 - [License](#license)
@@ -19,40 +20,68 @@
 
 ## Introduction
 
-The MetIC Service provides APIs for communicating with ADI metrology ICs and collecting metrology parameters over a 4-wire SPI interface. This example uses the MetIC service and CLI to demonstrate various features of the ADE9178 IC. Refer to the [ade_registers](https://github.com/analogdevicesinc/energy-ade-registers) repository for low-level examples using the driver APIs directly. This release includes a CLI interface to read and write various register values from the ADE9178 IC and ADE9113/ADE9103 ADCs, as well as a simple example demonstrating the usage of the MetIC interface.
+The MetIC Service provides APIs for communicating with ADI metrology ICs and collecting metrology parameters over a 4-wire SPI interface. This repository demonstrates how to use the MetIC service and CLI to interact with the ADE9178 IC. For low-level driver examples, refer to the [ADE registers repository](https://github.com/analogdevicesinc/energy-ade-registers). This release includes a CLI interface for reading and writing register values from the ADE9178 IC and ADE9113/ADE9103 ADCs, as well as an example showcasing the MetIC interface.
 
 ## Directory Structure
 
 ```
 docs/                API documentation and release notes
-examples/            ADE9178 Metrology example codes and projects
+eval_firmware/       ADE9178 metrology example projects using the CLI interface
+examples/            ADE9178 metrology example showcasing basic register read and write using MetIC service APIs
 include/             MetIC service library headers
 source/              MetIC service library sources
-ade_registers/       Submodule - ADE9178 IC header files
-firmware_services/   Submodule - Support modules (CLI, CRC, NVM)
+interface/           Interface files for ADE9178 interaction
+ade_registers/       Submodule - ADE9178, ADE9113, ADE9103 IC header files
+firmware_services/   Submodule - Support modules (CLI, NVM)
 board_support/       Submodule - Evaluation board support functions
 ```
 
 ## Example Directory Structure
 
+### Example
+
+Demonstrates how to use the MetIC Service to retrieve data from the ADE9178 with minimal changes required for communication. Refer to the respective readme for more details.
+
 ```
 example/
-├── source/           Example source files to interact with ADE9178
+├── source/           Example source files for ADE9178 interaction
 ├── include/          Example header files
-├── simple_example/   Simple example showing how to use MetIC APIs
+├── example/          Simple example using MetIC APIs
+├── interface/        Interface files for ADE9178 communication
 ├── project/
 │   ├── vscode/               VSCode project files
 │   ├── CMakeLists.txt        CMake build configuration
 │   ├── CMakePresets.json     CMake build presets
+├── readme.md         Readme
 ```
 
-## Building and Running Examples
+### Eval Firmware Example
 
-See the [example readme](example/readme.md) for instructions on building and running the example.
+Designed to evaluate the ADE9178 using the MetIC Service and external modules for user interaction. See the respective readme for more information.
+
+```
+eval_firmware/
+├── source/           Example source files for ADE9178 interaction
+├── include/          Example header files
+├── simple_example/   Simple example using MetIC APIs
+├── project/
+│   ├── vscode/               VSCode project files
+│   ├── CMakeLists.txt        CMake build configuration
+│   ├── CMakePresets.json     CMake build presets
+├── readme.md         Readme
+```
+
+## Building, Running, and Debugging Examples
+
+Refer to the [build readme](https://github.com/analogdevicesinc/energy-board-support/blob/main/max/eval_ade9178/readme.md) for instructions on building, running, and debugging the examples.
+
+## Porting MetIC Service to Different Applications
+
+See the [integration guide](readme_integration.md) for instructions on porting the MetIC service to other applications or boards.
 
 ## Porting Example to Different Boards
 
-Refer to the [porting guide](example/porting_guide.md) for intsruction to port the example to other boards
+See the [porting guide](readme_porting.md) for instructions on adapting the example to other boards.
 
 ## Building API Documentation
 
@@ -61,13 +90,12 @@ API documentation for the MetIC service can be generated as follows:
 1. Install [Doxygen](https://www.doxygen.nl/download.html) (v1.9.3) and [Graphviz](https://graphviz.gitlab.io/download/) (v2.38).
 2. Ensure both tools are in your PATH.
 3. Run:
-
     ```sh
     doxygen ade9178_example_doxy_config
     ```
+4. The generated documentation will be available in the `html` folder; open `index.html` to view it.
 
-The documentation will be generated in the output directory specified in the Doxygen configuration.
-
+The output directory is specified in the Doxygen configuration file.
 
 ## Contributing
 
@@ -79,9 +107,8 @@ Licensed under the [Apache 2.0 License](LICENSE).
 
 ## Contact
 
-For questions or support, open an issue on [GitHub](https://github.com/analogdevicesinc/energy-metrology-example/issues) or contact the maintainers listed in the repository.
+For questions or support, open an issue on [GitHub](https://github.com/analogdevicesinc/energy-ade9178-example/issues) or contact the maintainers listed in the repository.
 
 ## References
 
-- [CMake Documentation](https://cmake.org/documentation/)
 - [Doxygen Documentation](https://www.doxygen.nl/manual/docblocks.html)
