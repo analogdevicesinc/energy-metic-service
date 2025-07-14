@@ -4,9 +4,9 @@
 This guide describes how to adapt example projects—originally designed for [EVAL ADE9178](https://www.analog.com/en/resources/evaluation-hardware-and-software/evaluation-boards-kits/eval-ade9178.html#eb-overview)— to a different board.
 
 ## Static Configuration
-The example expects a configuration folder at [include/config](include/config) containing `app_cfg.h`for static settings.
+The example expects a configuration folder at [include/config](example/config) containing `app_cfg.h`for static settings.
 
-- In [`app_cfg.h`](include/config/app_cfg.h), update the macros to match your system requirements.
+- In [`app_cfg.h`](example/config/app_cfg.h), update the macros to match your system requirements.
 
 ## Driver Integration
 
@@ -25,13 +25,8 @@ To run the example on a custom board, update the following:
     The example uses UART to capture samples from ADE9178. 
       - Connect the ADE9178 WFRM_OUT pins to the appropriate  UART pin.
       - Implement UART initilization and set priorities appropriately.
-   
 
- 4. **UART for CLI**
-    The example uses UART for CLI. 
-      - Implement UART initilization and set priorities appropriately.
-
-5. **GPIO Pin Mapping**  
+4. **GPIO Pin Mapping**  
     The example uses several GPIOs to monitor ADE9178 interrupts (e.g., HOST_ERR, HOST_RDY, IRQ0–IRQ3, CF1, CF2, ADC_RESET, ADE_RESET).
 
     - **Input Pins:**  

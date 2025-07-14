@@ -7,8 +7,8 @@ set(CMAKE_PROJECT_NAME metic_service_example)
 set(PROJECT_ROOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../" CACHE PATH "Project root directory")
 set(BOARD_SUPPORT_DIR "${PROJECT_ROOT_DIR}/board_support" CACHE PATH "Board support directory")
 set(ADE_REGISTERS_DIR "${PROJECT_ROOT_DIR}/ade_registers" CACHE PATH "Directory for ADE registers"  )
-set(ADCSIF_DIR "${PROJECT_ROOT_DIR}/interface" CACHE PATH "Directory for ADC service interface")
-set(METIC_LIB_DIR "${PROJECT_ROOT_DIR}/source" CACHE PATH "Directory for ADC service library")
+set(METICIF_DIR "${PROJECT_ROOT_DIR}/interface" CACHE PATH "Directory for MetIC service interface")
+set(METIC_LIB_DIR "${PROJECT_ROOT_DIR}/source" CACHE PATH "Directory for MetIC service library")
 set(CONFIG_DIR "${CMAKE_CURRENT_LIST_DIR}/config" CACHE PATH "Configuration directory")
 
 # Build options
@@ -25,9 +25,9 @@ project(${CMAKE_PROJECT_NAME})
 # ------------------------------------------------------------------------------
 # Source Files
 # ------------------------------------------------------------------------------
-set(ADCSIF_SRC
-    ${ADCSIF_DIR}/source/metic_service_init_interface.c
-    ${ADCSIF_DIR}/source/metic_service_adapter.c
+set(METICIF_SRC
+    ${METICIF_DIR}/source/metic_service_init_interface.c
+    ${METICIF_DIR}/source/metic_service_adapter.c
 )
     
 
@@ -35,7 +35,7 @@ set(ADCSIF_SRC
 set(APP_SRC
     ${PROJECT_ROOT_DIR}/examples/metic_example_noos.c
     ${ADE_REGISTERS_DIR}/crc/source/ade_crc.c
-    ${ADCSIF_SRC}
+    ${METICIF_SRC}
 )
 
 # ------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ set(APP_INCLUDES
     ${ADE_REGISTERS_DIR}/crc/include
     ${PROJECT_ROOT_DIR}/include
     ${CONFIG_DIR}
-    ${ADCSIF_DIR}/include
+    ${METICIF_DIR}/include
 )
 
 # ------------------------------------------------------------------------------

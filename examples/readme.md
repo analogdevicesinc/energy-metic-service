@@ -1,6 +1,6 @@
 ﻿# ADE9178 Example
 
-The example provided demonstrates how ADC samples can be collected using ADC service. First few samples collected are printed to the terminal.
+This example shows how to use the MetIC Service APIs to communicate with the ADE9178. It demonstrates register read and write operations, prints output to the terminal.
 
 ### Hardware Setup and Connections
 
@@ -14,7 +14,7 @@ Example includes headers [app_cfg.h](projects/config/app_cfg.h)  for static conf
 ### Building, Running, and Debugging Examples
 
 - [`CMakeLists.txt`](projects/CMakeLists.txt) is provided for building the example
-- A [VS Code workspace](projects/frame_format_example.code-workspace) is also given as part of the example.
+- A [VS Code workspace](projects/metic_example.code-workspace) is also given as part of the example.
 - See the [board support readme](https://github.com/analogdevicesinc/energy-board-support/blob/main/max/eval_ade9178/readme.md) for instructions on building, running, and debugging the example.
 
 ### Board Support Functions

@@ -23,13 +23,6 @@
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
             }
-        },
-        {
-            "name": "RelWithDbgInfo",
-            "inherits": "default",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "RelWithDbgInfo"
-            }
         }
     ],
     "buildPresets": [
@@ -40,10 +33,6 @@
         {
             "name": "Debug",
             "configurePreset": "Debug"
-        },
-        {
-            "name": "RelWithDbgInfo",
-            "configurePreset": "RelWithDbgInfo"
         }
     ]
 }

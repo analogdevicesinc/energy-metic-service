@@ -25,6 +25,25 @@
         },
         {
             "type": "shell",
+            "label": "OpenOCD: Start GDB Server (MAX32670)",
+            "command": "C:/MaximSDK/Tools/OpenOCD/openocd.exe",
+            "args": [
+                "-c", "gdb_port 50000",
+                "-c", "tcl_port 50001",
+                "-c", "telnet_port 50002",
+                "-s", "C:/MaximSDK/Tools/OpenOCD/scripts",
+                "-f", "c:/Users/LNuthana/.vscode/extensions/marus25.cortex-debug-1.12.1/support/openocd-helpers.tcl",
+                "-f", "interface/cmsis-dap.cfg",
+                "-f", "target/MAX32670.cfg",
+                "-c", "adapter speed 500"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
             "label": "Re-build project",
             "command": "cmake",
             "args": ["--build", "${command:cmake.buildDirectory}", "--clean-first", "-v", "-j", "8"],
@@ -43,55 +62,5 @@
             },
             "problemMatcher": []
         },
-        {
-            "type": "shell",
-            "label": "CubeProg: Flash project (SWD)",
-            "command": "STM32_Programmer_CLI",
-            "args": [
-                "--connect",
-                "port=swd",
-                "ap=1",
-                "--download",
-                "${command:cmake.launchTargetPath}",
-                // Let CMake extension decide executable: "${command:cmake.launchTargetPath}",
-                "-hardRst", // Hardware reset - if rst pin is connected
-                "-rst", // Software reset (backup)
-                "--start" // Start execution
-            ],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": []
-        },
-        {
-            "type": "shell",
-            "label": "CubeProg: Flash project with defined serial number (SWD) - you must set serial number first",
-            "command": "STM32_Programmer_CLI",
-            "args": [
-                "--connect",
-                "port=swd",
-                "sn=<yourserialnumber>",
-                "--download",
-                "${command:cmake.launchTargetPath}",
-                // Let CMake extension decide executable: "${command:cmake.launchTargetPath}",
-                "-hardRst", // Hardware reset - if rst pin is connected
-                "-rst", // Software reset (backup)
-                "--start" // Start execution
-            ],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": []
-        },
-        {
-            "type": "shell",
-            "label": "CubeProg: List all available communication interfaces",
-            "command": "STM32_Programmer_CLI",
-            "args": ["--list"],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": []
-        }
     ]
 }

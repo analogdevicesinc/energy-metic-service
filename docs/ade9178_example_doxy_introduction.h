@@ -1,7 +1,5 @@
 /******************************************************************************
- Copyright (c) 2024  Analog Devices Inc. All Rights Reserved.
- This software is proprietary & confidential to Analog Devices, Inc.
- and its licensors.
+Copyright (c) 2024 - 2025 Analog Devices Inc.
 ******************************************************************************/
 
 /* "Mainpage" is the main page for the DoxyGen output.

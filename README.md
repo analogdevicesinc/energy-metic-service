@@ -38,37 +38,35 @@ board_support/       Submodule - Evaluation board support functions
 
 ## Example Directory Structure
 
-### Example
+### Example Directory
 
-Demonstrates how to use the MetIC Service to retrieve data from the ADE9178 with minimal changes required for communication. Refer to the respective readme for more details.
+This directory contains a minimal example demonstrating how to use the MetIC Service to communicate with the ADE9178. It includes basic register read and write operations. For more details, refer to the `readme.md` within the directory.
 
 ```
-example/
-├── source/           Example source files for ADE9178 interaction
-├── include/          Example header files
-├── example/          Simple example using MetIC APIs
-├── interface/        Interface files for ADE9178 communication
-├── project/
-│   ├── vscode/               VSCode project files
-│   ├── CMakeLists.txt        CMake build configuration
-│   ├── CMakePresets.json     CMake build presets
-├── readme.md         Readme
+examples/
+├── projects/
+│   ├── .vscode/            VSCode project files
+│   ├── workspace/          VSCode workspace settings
+│   ├── config/             Application configuration files
+│   ├── CMakeLists.txt      CMake build configuration
+│   ├── CMakePresets.json   CMake build presets
+├── readme.md               Example documentation
+├── src_include/            Source (.c) and header (.h) files
 ```
 
-### Eval Firmware Example
+### Eval Firmware Directory
 
-Designed to evaluate the ADE9178 using the MetIC Service and external modules for user interaction. See the respective readme for more information.
+This directory provides a more comprehensive evaluation firmware for the ADE9178, utilizing the MetIC Service along with additional modules for user interaction. See the directory's `readme.md` for further information.
 
 ```
 eval_firmware/
-├── source/           Example source files for ADE9178 interaction
-├── include/          Example header files
-├── simple_example/   Simple example using MetIC APIs
+├── src/                    Source files for ADE9178 interaction
+├── include/                Header files
 ├── project/
-│   ├── vscode/               VSCode project files
-│   ├── CMakeLists.txt        CMake build configuration
-│   ├── CMakePresets.json     CMake build presets
-├── readme.md         Readme
+│   ├── .vscode/            VSCode project files
+│   ├── CMakeLists.txt      CMake build configuration
+│   ├── CMakePresets.json   CMake build presets
+├── readme.md               Evaluation firmware documentation
 ```
 
 ## Building, Running, and Debugging Examples
