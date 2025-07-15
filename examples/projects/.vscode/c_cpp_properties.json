@@ -8,7 +8,7 @@
              * It provides data for C/C++ plugin,
              * such as include paths, browse paths, defines, etc.
              */
-            "name": "STM32",
+            "name": "Maim",
             "configurationProvider": "ms-vscode.cmake-tools",
             "intelliSenseMode": "${default}"
         }

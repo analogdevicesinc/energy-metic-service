@@ -1,40 +1,44 @@
 {
     "configurations": [
-        {
-            "name": "Debug Arm (Cortex-debug)",
-            "cwd":"${workspaceRoot}",
-            "showDevDebugOutput": "raw",
-            "executable": "${command:cmake.launchTargetPath}",
-            "request": "launch",
-            "type": "cortex-debug",
-            "servertype": "openocd",
-            "gdbPath": "${config:MAXIM_PATH}/Tools/GNUTools/10.3/bin/arm-none-eabi-gdb.exe",
-            "serverpath": "${config:MAXIM_PATH}/Tools/OpenOCD/openocd.exe",
-            "searchDir": ["${config:MAXIM_PATH}/Tools/OpenOCD/scripts"],
-            "configFiles": ["interface/cmsis-dap.cfg", "target/MAX32670.cfg"],
-            "interface": "swd",
-            "runToEntryPoint": "main",
-            "svdFile": "${config:MAXIM_PATH}/Libraries/CMSIS/Device/Maxim/MAX32670/Include/max32670.svd"
-        },
+{
+    "name": "Debug Arm (Cortex-debug)",
+    "cwd": "${workspaceRoot}",
+    "executable": "${command:cmake.launchTargetPath}",
+    "loadFiles": ["${command:cmake.launchTargetPath}"],
+    "symbolFiles": [{
+                "file": "${command:cmake.launchTargetPath}"
+            }],
+    "request": "launch",
+    "type": "cortex-debug",
+    "servertype": "openocd",
+    "gdbPath": "${config:MAXIM_PATH}/Tools/GNUTools/10.3/bin/arm-none-eabi-gdb.exe",
+    "serverpath": "${config:MAXIM_PATH}/Tools/OpenOCD/openocd.exe",
+    "searchDir": ["${config:MAXIM_PATH}/Tools/OpenOCD/scripts"],
+    "configFiles": ["interface/cmsis-dap.cfg", "target/max32670.cfg"],
+    "interface": "swd",
+    "runToEntryPoint": "main",
+    "svdFile": "${config:MAXIM_PATH}/Libraries/CMSIS/Device/Maxim/MAX32670/Include/max32670.svd",
+    "preLaunchCommands": ["monitor reset halt"]
+},
                 {
             "name": "Attach to Microcontroller",
-            "cwd": "${workspaceFolder}",
-            "type": "cortex-debug",
-            "executable": "${command:cmake.launchTargetPath}",
-            // Let CMake extension decide executable: "${command:cmake.launchTargetPath}"
-            // Or fixed file path: "${workspaceFolder}/path/to/filename.elf"
-            "request": "attach",
-            "servertype": "openocd",
-            "device": "max32670", //MCU used
-            "interface": "swd",
-            "searchDir": ["${config:MAXIM_PATH}/Tools/OpenOCD/scripts"],
-            "configFiles": ["interface/cmsis-dap.cfg", "target/MAX32670.cfg"],
-            "serialNumber": "",        //Set CMSIS-DAP ID if you use multiple at the same time
-            "runToEntryPoint": "main",
-            "svdFile": "${config:MAXIM_PATH}/Libraries/CMSIS/Device/Maxim/max32670/Include/max32670.svd",
-            "serverpath": "${config:MAXIM_PATH}/Tools/OpenOCD/openocd.exe",  
-            "gdbPath": "${config:MAXIM_PATH}/Tools/GNUTools/10.3/bin/arm-none-eabi-gdb.exe",         
-            "serverArgs": ["-m","1"],
+    "cwd": "${workspaceRoot}",
+    "executable": "${command:cmake.launchTargetPath}",
+    "loadFiles": ["${command:cmake.launchTargetPath}"],
+    "symbolFiles": [{
+                "file": "${command:cmake.launchTargetPath}"
+            }],
+    "request": "attach",
+    "type": "cortex-debug",
+    "servertype": "openocd",
+    "gdbPath": "${config:MAXIM_PATH}/Tools/GNUTools/10.3/bin/arm-none-eabi-gdb.exe",
+    "serverpath": "${config:MAXIM_PATH}/Tools/OpenOCD/openocd.exe",
+    "searchDir": ["${config:MAXIM_PATH}/Tools/OpenOCD/scripts"],
+    "configFiles": ["interface/cmsis-dap.cfg", "target/max32670.cfg"],
+    "interface": "swd",
+    "runToEntryPoint": "main",
+    "svdFile": "${config:MAXIM_PATH}/Libraries/CMSIS/Device/Maxim/MAX32670/Include/max32670.svd",
+    "preLaunchCommands": ["monitor reset halt"]
             /* If you use external loader, add additional arguments */
             //"serverArgs": ["--extload", "path/to/ext/loader.stldr"],
         }
