@@ -877,14 +877,12 @@ WARN_LOGFILE           =
 INPUT                  = ../docs \
                          ../source \
                          ../include \
-                         ../example/source/interface/metic_service_init_interface.c \
-                         ../example/source/interface/metic_service_run_interface.c \
-                         ../example/source/interface/metic_service_adapter.c \
-                         ../example/include/interface/metic_service_interface.h \
-                         ../example/source/metic_service_no_os_interface.c \
-						 ../ade_registers/ade9178/include/ade9178.h \
-                         ../ade_registers/ade9178/include/ade9178_default.h \
+                         ../interface/source \
+                         ../interface/include \
+						 ../ade_registers/ade9178/include/ \
+                         ../ade_registers/ade91xx/include/ \ 
 
+            
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
 # libiconv (or the iconv built into libc) for the transcoding. See the libiconv

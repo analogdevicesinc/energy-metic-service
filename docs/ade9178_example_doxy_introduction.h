@@ -1,5 +1,5 @@
 /******************************************************************************
- Copyright (c) 2024 - 2025  Analog Devices Inc.
+Copyright (c) 2024 - 2025 Analog Devices Inc.
 ******************************************************************************/
 
 /* "Mainpage" is the main page for the DoxyGen output.
