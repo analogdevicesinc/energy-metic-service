@@ -11,7 +11,6 @@
 - [Example Directory Structure](#example-directory-structure)
 - [Building, Running, and Debugging Examples](#building-running-and-debugging-examples)
 - [Porting MetIC Service to Different Applications](#porting-metic-service-to-different-applications)
-- [Porting Example to Different Boards](#porting-example-to-different-boards)
 - [Building API Documentation](#building-api-documentation)
 - [Contributing](#contributing)
 - [License](#license)
@@ -76,10 +75,6 @@ Refer to the [build readme](https://github.com/analogdevicesinc/energy-board-sup
 ## Porting MetIC Service to Different Applications
 
 See the [integration guide](readme_integration.md) for instructions on porting the MetIC service to other applications or boards.
-
-## Porting Example to Different Boards
-
-See the [porting guide](readme_porting.md) for instructions on adapting the example to other boards.
 
 ## Building API Documentation
 
