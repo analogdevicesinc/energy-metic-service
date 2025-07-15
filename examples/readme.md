@@ -2,6 +2,17 @@
 
 This example shows how to use the MetIC Service APIs to communicate with the ADE9178. It demonstrates register read and write operations, prints output to the terminal.
 
+```
+├── projects/
+│   ├── .vscode/            VSCode project files
+│   ├── workspace/          VSCode workspace settings
+│   ├── config/             Application configuration files
+│   ├── CMakeLists.txt      CMake build configuration
+│   ├── CMakePresets.json   CMake build presets
+├── readme.md               Example documentation
+```
+
+
 ### Hardware Setup and Connections
 
 Refer to [board support readme](https://github.com/analogdevicesinc/energy-board-support/blob/main/max/eval_ade9178/readme.md) for required HW setup.

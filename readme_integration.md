@@ -37,9 +37,8 @@ To integrate the MetIC service into your project, follow these steps:
     Implement or integrate 16-bit CRC routines as required by the service. The provided CRC service code can be used as a reference.
 
 4. **Initialize Service and Hardware:**  
-    Initialize the MetIC service and configure the hardware interface (e.g., SPI, UART) as needed. For porting to different MCUs, refer to the [Porting Guide](readme_porting).
+    Initialize the MetIC service and configure the hardware interface (e.g., SPI, UART) as needed. 
 
 5. **Use the APIs:**  
     Use the provided APIs for device configuration, register access, and waveform data acquisition.
 
-Refer to the example CMake configuration and adapter files for further guidance.

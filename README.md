@@ -37,44 +37,16 @@ board_support/       Submodule - Evaluation board support functions
 
 ## Example Directory Structure
 
-### Example Directory
 
-This directory contains a minimal example demonstrating how to use the MetIC Service to communicate with the ADE9178. It includes basic register read and write operations. For more details, refer to the `readme.md` within the directory.
-
-```
-examples/
-├── projects/
-│   ├── .vscode/            VSCode project files
-│   ├── workspace/          VSCode workspace settings
-│   ├── config/             Application configuration files
-│   ├── CMakeLists.txt      CMake build configuration
-│   ├── CMakePresets.json   CMake build presets
-├── readme.md               Example documentation
-├── src_include/            Source (.c) and header (.h) files
-```
 
 ### Eval Firmware Directory
 
 This directory provides a more comprehensive evaluation firmware for the ADE9178, utilizing the MetIC Service along with additional modules for user interaction. See the directory's `readme.md` for further information.
 
-```
-eval_firmware/
-├── src/                    Source files for ADE9178 interaction
-├── include/                Header files
-├── project/
-│   ├── .vscode/            VSCode project files
-│   ├── CMakeLists.txt      CMake build configuration
-│   ├── CMakePresets.json   CMake build presets
-├── readme.md               Evaluation firmware documentation
-```
 
-## Building, Running, and Debugging Examples
+## Integrating MetIC Service to the application
 
-Refer to the [build readme](https://github.com/analogdevicesinc/energy-board-support/blob/main/max/eval_ade9178/readme.md) for instructions on building, running, and debugging the examples.
-
-## Porting MetIC Service to Different Applications
-
-See the [integration guide](readme_integration.md) for instructions on porting the MetIC service to other applications or boards.
+See the [integration guide](readme_integration.md) for instructions on integrating the MetIC service to the applications
 
 ## Building API Documentation
 
