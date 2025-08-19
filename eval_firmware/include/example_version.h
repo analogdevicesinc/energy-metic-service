@@ -30,10 +30,10 @@ extern "C" {
 #define ADE9178_EXAMPLE_PATCH_NUMBER 0
 /** Id to differentiate different builds of same release.
  *  Updated through  automation*/
-#define ADE9178_EXAMPLE_BUILD_HASH 0x7fd58aa9
+#define ADE9178_EXAMPLE_BUILD_HASH 0x975861d9
 /** Build Number.
  *  Updated through  automation*/
-#define ADE9178_EXAMPLE_BUILD_NUM 2507140
+#define ADE9178_EXAMPLE_BUILD_NUM 2508191
 
 /** Release version */
 #define ADE9178_EXAMPLE_VERSION                                                                    \

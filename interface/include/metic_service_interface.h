@@ -16,7 +16,6 @@
 
 /*============= I N C L U D E S =============*/
 
-#include "adi_cli.h"
 #include "adi_metic.h"
 #include "adi_metic_memory.h"
 #include "app_cfg.h"
@@ -105,8 +104,10 @@ typedef struct
     uint32_t cfFlag[APP_CFG_MAX_NUM_IRQ_TIME];
     /** index of the number of IRQs stored in the buffer */
     uint32_t cfIndex;
-    /** Enable regsiter read */
+    /** Enable register read */
     uint8_t enableRegisterRead;
+    /** free space available to send the output through CLI */
+    uint8_t freeSpaceAvail;
     /** Enable WFS capture */
     uint8_t enableWfsCapture;
     /** register output structure in fix format */
@@ -200,15 +201,12 @@ void MetIcIfUpdateIrqStatus(uint32_t flag);
 /**
  * @brief Function to start reading all metrology outputs by calling #adi_metic_ReadRegister with
  * appropriate number of registers and converting the outputs that are in fixed format into
- * appropriate units. Reading of outputs is done at every RMSONERDY.
- * @param[in] hCli 		- cli handle to get the free space to store the messages.
  * @param[in] pInfo 		- User instance
  * @param[in] pOutput 		- pointer to output to store read values from Metrology IC.
  * @returns 0 on success
  *
  */
-int32_t MetIcIfReadMetrologyParameters(ADI_CLI_HANDLE hCli, METIC_INSTANCE_INFO *pInfo,
-                                       ADI_METIC_OUTPUT *pOutput);
+int32_t MetIcIfReadMetrologyParameters(METIC_INSTANCE_INFO *pInfo, ADI_METIC_OUTPUT *pOutput);
 
 /**
  * @brief Function to reset #ADE_IRQ_STATUS. It's useful when data collection to be started newly.

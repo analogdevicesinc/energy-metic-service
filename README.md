@@ -8,9 +8,6 @@
 
 - [Introduction](#introduction)
 - [Directory Structure](#directory-structure)
-- [Example Directory Structure](#example-directory-structure)
-- [Building, Running, and Debugging Examples](#building-running-and-debugging-examples)
-- [Porting MetIC Service to Different Applications](#porting-metic-service-to-different-applications)
 - [Building API Documentation](#building-api-documentation)
 - [Contributing](#contributing)
 - [License](#license)
@@ -21,32 +18,35 @@
 
 The MetIC Service provides APIs for communicating with ADI metrology ICs and collecting metrology parameters over a 4-wire SPI interface. This repository demonstrates how to use the MetIC service and CLI to interact with the ADE9178 IC. For low-level driver examples, refer to the [ADE registers repository](https://github.com/analogdevicesinc/energy-ade-registers). This release includes a CLI interface for reading and writing register values from the ADE9178 IC and ADE9113/ADE9103 ADCs, as well as an example showcasing the MetIC interface.
 
+This repository contains source code for the service and example code demonstrating how to use the APIs. The examples use the following submodules for demonstrations:
+- [energy-ade-registers](https://github.com/analogdevicesinc/energy-ade-registers)
+- [energy-board-support](https://github.com/analogdevicesinc/energy-board-support)
+- [energy-firmware-services](https://github.com/analogdevicesinc/energy-firmware-services)
+
+To clone the repository and its submodules, use the following command:
+
+```sh
+git clone --recursive https://github.com/analogdevicesinc/energy-metic-service.git
+```
+
+The [sample_read_example](examples) demonstrates how to call various APIs and interface functions of the MetIC Service. The repository also contains sources for [CLI evaluation firmware](eval_firmware).
+
 ## Directory Structure
 
+```text
+energy-metic-service/
+├── docs/                #API documentation and release notes
+├── eval_firmware/       #ADE9178 metrology example projects using the CLI interface
+├── examples/            #ADE9178 metrology example showcasing basic register read and write using MetIC service APIs
+├── include/             #MetIC service library headers
+├── source/              #MetIC service library sources
+├── interface/           #Interface files for ADE9178 interaction
+├── ade_registers/       #Submodule - ADE9178, ADE9113, ADE9103 IC header files
+├── firmware_services/   #Submodule - Support modules (CLI, NVM)
+├── board_support/       #Submodule - Evaluation board support functions
 ```
-docs/                API documentation and release notes
-eval_firmware/       ADE9178 metrology example projects using the CLI interface
-examples/            ADE9178 metrology example showcasing basic register read and write using MetIC service APIs
-include/             MetIC service library headers
-source/              MetIC service library sources
-interface/           Interface files for ADE9178 interaction
-ade_registers/       Submodule - ADE9178, ADE9113, ADE9103 IC header files
-firmware_services/   Submodule - Support modules (CLI, NVM)
-board_support/       Submodule - Evaluation board support functions
-```
 
-## Example Directory Structure
-
-
-
-### Eval Firmware Directory
-
-This directory provides a more comprehensive evaluation firmware for the ADE9178, utilizing the MetIC Service along with additional modules for user interaction. See the directory's `readme.md` for further information.
-
-
-## Integrating MetIC Service to the application
-
-See the [integration guide](readme_integration.md) for instructions on integrating the MetIC service to the applications
+Refer to [integration_instructions.md](readme_integration.md) for instructions on integrating the MetIC Service into a new project.
 
 ## Building API Documentation
 

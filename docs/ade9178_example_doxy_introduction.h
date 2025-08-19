@@ -16,9 +16,6 @@ Copyright (c) 2024 - 2025 Analog Devices Inc.
      to connect to the IC. This release only supports ADE9178 metrology IC.
 
      The package comes with source codes for the service and examples codes to show how these APIs can be used. The example is written for EVAL-ADE9178 board.
-     Following diagram shows an overall architecture of the example.
-
-     \image html "metrology_example.png"
 
      Note that only block marked as metrology service is part of the service.  All  other blocks are expected to be written as part of the application. Example codes are given
      to show how APIs can be called to configure and get data from metrology ICs. A CLI interface over UART is provided as user interface for the example. This can be used to configure the metrology IC and to view the metrology parameters

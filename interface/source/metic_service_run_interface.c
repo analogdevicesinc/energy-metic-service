@@ -10,7 +10,6 @@
 
 /*============= I N C L U D E S =============*/
 
-#include "adi_cli.h"
 #include "adi_evb.h"
 #include "adi_metic.h"
 #include "app_cfg.h"
@@ -59,10 +58,9 @@ static void ExtractAndConvertAngleOutput(int32_t *pSrc,
                                          ADI_METIC_ANGLE_OUTPUT *pAngleOutput);
 static void ExtractStatusOutput(int32_t *pSrc, ADI_METIC_STATUS_OUTPUT *pAngleOutput);
 
-static int32_t ReadOutputRegisters(METIC_INSTANCE_INFO *pInfo, ADI_METIC_OUTPUT *pOutput);
 static ADI_METIC_STATUS ClearAdcStatusRegisters(METIC_INSTANCE_INFO *pInfo, uint8_t device,
                                                 int32_t errorRegStatus);
-
+static int32_t ReadOutputRegisters(METIC_INSTANCE_INFO *pInfo, ADI_METIC_OUTPUT *pOutput);
 /**
  * @brief Function to get OUTPUT register index from pSrc buffer.
  * @param[in] pSrc 		- User instance
@@ -98,8 +96,7 @@ ADI_METIC_STATUS MetIcIfResetIrqStatus(METIC_INSTANCE_INFO *pInfo)
     return adeStatus;
 }
 
-int32_t MetIcIfReadMetrologyParameters(ADI_CLI_HANDLE hCli, METIC_INSTANCE_INFO *pInfo,
-                                       ADI_METIC_OUTPUT *pOutput)
+int32_t MetIcIfReadMetrologyParameters(METIC_INSTANCE_INFO *pInfo, ADI_METIC_OUTPUT *pOutput)
 {
     int32_t status0;
 
@@ -107,7 +104,6 @@ int32_t MetIcIfReadMetrologyParameters(ADI_CLI_HANDLE hCli, METIC_INSTANCE_INFO 
     uint32_t maxTime = 0;
     uint32_t currTime;
     ADI_METIC_STATUS adeStatus = ADI_METIC_STATUS_SUCCESS;
-    uint32_t freeSpace;
     if (pInfo->irqStatus.irq0Ready == 1)
     {
         status = 0;
@@ -122,10 +118,9 @@ int32_t MetIcIfReadMetrologyParameters(ADI_CLI_HANDLE hCli, METIC_INSTANCE_INFO 
         {
             if (pInfo->enableRegisterRead == 1)
             {
-                adi_cli_GetFreeMessageSpace(hCli, &freeSpace);
-                if (freeSpace > MAX_MSG_STORAGE_SIZE_PER_CYCLE)
+                if (pInfo->freeSpaceAvail == 1)
                 {
-                    ReadOutputRegisters(pInfo, pOutput);
+                    status = ReadOutputRegisters(pInfo, pOutput);
                 }
                 else
                 {

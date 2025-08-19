@@ -132,12 +132,18 @@ int32_t CollectMetOutputs(void)
 {
     int32_t status = SYS_STATUS_RUNNING;
     METIC_EXAMPLE *pExample = &adeExample;
-
+    int32_t outputStatus;
+    uint32_t freeSpace;
     // Read metrology parameters if cycles are not completed
     if (pExample->processedCycles < pExample->exampleConfig.cyclesToRun)
     {
-        int32_t outputStatus = MetIcIfReadMetrologyParameters(
-            pExample->cliIf.hCli, &pExample->adeInstance, &pExample->output);
+        pExample->adeInstance.freeSpaceAvail = 0;
+        adi_cli_GetFreeMessageSpace(pExample->cliIf.hCli, &freeSpace);
+        if (freeSpace > MAX_MSG_STORAGE_SIZE_PER_CYCLE)
+        {
+            pExample->adeInstance.freeSpaceAvail = 1;
+        }
+        outputStatus = MetIcIfReadMetrologyParameters(&pExample->adeInstance, &pExample->output);
 
         // Handle output status
         switch (outputStatus)
