@@ -2,7 +2,7 @@
 
 ## Overview
 
-The MetIC service provides a streamlined interface for communicating with the ADE9178 device, offering APIs for initialization, configuration, register access, and waveform streaming. Source files are located in the [`source`](source) directory, with headers in [`include`](include). Register definitions for the ADE9178 can be found in the [`ade_registers/ade9178`](https://github.com/adi-innersource/emfrm-ade-registers/tree/development/ade9178/include) directory.
+The MetIC service provides a streamlined interface for communicating with the ADE9178 device, offering APIs for initialization, configuration, register access, and waveform streaming. Source files are located in the [`source`](source) directory, with headers in [`include`](include). Register definitions for the ADE9178 can be found in the [`ade_registers/ade9178`](https://github.com/analogdevicesinc/energy-ade-registers/tree/main/ade9178/include) directory.
 
 A 16-bit CRC routine is required for data integrity. You can implement this using the provided CRC service code. See the [adapter file](interface/source/metic_service_adapter.c) for an example implementation.
 
@@ -30,7 +30,7 @@ To integrate the MetIC service into your project, follow these steps:
 2. **Configure Include Paths:**  
     Add the following directories to your project's include paths:
     - [`include`](include)
-    - [`ade_registers/ade9178/include`](https://github.com/adi-innersource/emfrm-ade-registers/tree/development/ade9178/include)
+    - [`ade_registers/ade9178/include`](https://github.com/analogdevicesinc/energy-ade-registers/tree/main/ade9178/include)
     - [`interface/include`](interface/include)
 
 3. **CRC Implementation:**  

@@ -409,6 +409,19 @@ int32_t CollectMetOutputs(void);
 void NotifyMetOutputThread(void);
 
 /**
+ * @brief Function to get the command and call the appropriate dispatch function APIs.
+ *
+ */
+void CliExample(int32_t status);
+
+/**
+ * @brief Get CLI Interface handle
+ *
+ * @return pointer to CLI_INTERFACE structure
+ */
+ADI_CLI_HANDLE GetCliHandle(void);
+
+/**
  * @brief Runs the example in loop
  *
  * @return 0 - Success - 1 Failed

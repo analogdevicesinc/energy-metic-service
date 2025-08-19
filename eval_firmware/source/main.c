@@ -5,8 +5,6 @@
 /*============= I N C L U D E S =============*/
 
 #include "adi_cli.h"
-#include "adi_evb.h"
-#include "message.h"
 #include "metic_example.h"
 #include "status.h"
 
@@ -42,13 +40,7 @@ int32_t RunExample()
     {
         status = HandleRunState();
         criticalError = HandleError(status);
-        if (adi_cli_FlushMessages() == 0)
-        {
-            if (status != SYS_STATUS_RUNNING)
-            {
-                adi_cli_Interface();
-            }
-        }
+        CliExample(status);
     }
     return status;
 }

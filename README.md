@@ -72,7 +72,7 @@ Licensed under the [Apache 2.0 License](LICENSE).
 
 ## Contact
 
-For questions or support, open an issue on [GitHub](https://github.com/analogdevicesinc/energy-ade9178-example/issues) or contact the maintainers listed in the repository.
+For questions or support, open an issue on [GitHub](https://github.com/analogdevicesinc/energy-metic-service/issues) or contact the maintainers listed in the repository.
 
 ## References
 

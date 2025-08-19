@@ -11,9 +11,9 @@
 #ifndef __DISPATCH_TABLE_H__
 #define __DISPATCH_TABLE_H__
 
+#include "adi_cli.h"
 #include "cli_commands.h"
 #include "cli_dispatch.h"
-#include "cli_interface.h"
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -29,14 +29,8 @@ static const Command dispatchTable[] = {
     {"version", "s", CmdVersion, NOHIDE, "Gets Firmware version", "", NULL, NULL},
     {"setdisplay", "ss", CmdSetDisplay, NOHIDE, "Sets display of a parameter to on or off ",
      "<option>  <on|off>", NULL, DescDisplay},
-    {"help", "s", CliHelp, NOHIDE, "command help", "<command>",
-     "\t  Display command line help summary. command specific help is "
-     "displayed  if argument <command> is "
-     "given.\n\r",
-     NULL},
 #ifdef ENABLE_X86_BUILD
-    {"close", "", CliClose, NOHIDE, "Closes all opened files", "", NULL, NULL},
-    {"exit", "", CliExit, NOHIDE, "Exits", "", NULL, NULL},
+    {"close", "", CliClose, HIDE, "Closes all opened files", "", NULL, NULL},
 #endif /* ENABLE_X86_BUILD */
 #if BOARD_CFG_RESET_TYPE == 0
     {"reset", "s", CmdReset, NOHIDE, "H/W Reset of ADE9178 and ADCs", "", NULL, NULL},
@@ -48,8 +42,6 @@ static const Command dispatchTable[] = {
      "\tall for hardware reset of both ADE9178 and ADC.\n\r",
      NULL},
 #endif
-    {"manual", "s", CliCmdManual, NOHIDE, "Enables or disables manual mode", "<on|off>", NULL,
-     NULL},
     {"setreg", "sss", CmdSetRegData, NOHIDE, "Writes ADE9178/ADC register",
      "<device> <register address> <register value>",
      "\tDevice can be ADE9178, ADC0, ADC1, ADC2, ADC3 or ALL_ADC\n\r"

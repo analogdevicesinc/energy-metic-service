@@ -98,7 +98,8 @@ ADI_METIC_STATUS MetIcIfResetIrqStatus(METIC_INSTANCE_INFO *pInfo)
     return adeStatus;
 }
 
-int32_t MetIcIfReadMetrologyParameters(METIC_INSTANCE_INFO *pInfo, ADI_METIC_OUTPUT *pOutput)
+int32_t MetIcIfReadMetrologyParameters(ADI_CLI_HANDLE hCli, METIC_INSTANCE_INFO *pInfo,
+                                       ADI_METIC_OUTPUT *pOutput)
 {
     int32_t status0;
 
@@ -121,7 +122,7 @@ int32_t MetIcIfReadMetrologyParameters(METIC_INSTANCE_INFO *pInfo, ADI_METIC_OUT
         {
             if (pInfo->enableRegisterRead == 1)
             {
-                freeSpace = adi_cli_GetFreeMessageSpace();
+                adi_cli_GetFreeMessageSpace(hCli, &freeSpace);
                 if (freeSpace > MAX_MSG_STORAGE_SIZE_PER_CYCLE)
                 {
                     ReadOutputRegisters(pInfo, pOutput);
