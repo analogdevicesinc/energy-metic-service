@@ -13,6 +13,7 @@
 #include "adi_cli.h"
 #include "adi_metic.h"
 #include "app_cfg.h"
+#include "dispatch_table.h"
 #include "error_display.h"
 #include "example_display.h"
 #include "message.h"
@@ -66,14 +67,40 @@ int32_t InitBoard(void)
     return status;
 }
 
+ADI_CLI_HANDLE GetCliHandle(void)
+{
+    METIC_EXAMPLE *pExample = &adeExample;
+    return pExample->cliIf.hCli;
+}
+void CliExample(int32_t status)
+{
+    METIC_EXAMPLE *pExample = &adeExample;
+    ADI_CLI_HANDLE hCli = GetCliHandle();
+    ADI_CLI_STATUS cliStatus = 0;
+    if (adi_cli_FlushMessages(hCli) == 0)
+    {
+        if (status != SYS_STATUS_RUNNING)
+        {
+            cliStatus = adi_cli_GetCmd(hCli, pExample->cliIf.command);
+            if (cliStatus == ADI_CLI_STATUS_SUCCESS)
+            {
+                cliStatus =
+                    adi_cli_Dispatch(hCli, pExample->cliIf.command, dispatchTable, NUM_COMMANDS);
+            }
+        }
+    }
+}
+
 void HostUartRxCallback(void)
 {
-    adi_cli_RxCallback();
+    METIC_EXAMPLE *pExample = &adeExample;
+    adi_cli_RxCallback(pExample->cliIf.hCli);
 }
 
 void HostUartTxCallback(void)
 {
-    adi_cli_TxCallback();
+    METIC_EXAMPLE *pExample = &adeExample;
+    adi_cli_TxCallback(pExample->cliIf.hCli);
 }
 
 int32_t InitServices(void)
@@ -105,12 +132,18 @@ int32_t CollectMetOutputs(void)
 {
     int32_t status = SYS_STATUS_RUNNING;
     METIC_EXAMPLE *pExample = &adeExample;
-
+    int32_t outputStatus;
+    uint32_t freeSpace;
     // Read metrology parameters if cycles are not completed
     if (pExample->processedCycles < pExample->exampleConfig.cyclesToRun)
     {
-        int32_t outputStatus =
-            MetIcIfReadMetrologyParameters(&pExample->adeInstance, &pExample->output);
+        pExample->adeInstance.freeSpaceAvail = 0;
+        adi_cli_GetFreeMessageSpace(pExample->cliIf.hCli, &freeSpace);
+        if (freeSpace > MAX_MSG_STORAGE_SIZE_PER_CYCLE)
+        {
+            pExample->adeInstance.freeSpaceAvail = 1;
+        }
+        outputStatus = MetIcIfReadMetrologyParameters(&pExample->adeInstance, &pExample->output);
 
         // Handle output status
         switch (outputStatus)
@@ -383,7 +416,7 @@ void HandleDisplayPulseTimeCmd(uint32_t pulseId)
             {
                 INFO_MSG_RAW("%ld,", pulseTime[i + 1])
             }
-            adi_cli_FlushMessages();
+            adi_cli_FlushMessages(pExample->cliIf.hCli);
         }
         INFO_MSG("")
     }

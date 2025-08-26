@@ -33,7 +33,8 @@ ADI_CLI_STATUS CliCreateInstance(CLI_INTERFACE_INFO *pInfo)
 
     if (status == 0)
     {
-        status = adi_cli_Init(pConfig);
+        status = adi_cli_Init(pInfo->hCli, pConfig);
+        adi_cli_SetHandleTerminal(pInfo->hCli);
     }
     return status;
 }
@@ -43,8 +44,6 @@ void PopulateCliConfig(CLI_INTERFACE_INFO *pInfo)
     ADI_CLI_CONFIG *pConfig = &pInfo->config;
     pConfig->pfTransmitAsync = CliTransmitAsync;
     pConfig->pfReceiveAsync = CliReceiveAsync;
-    pConfig->pDispatchTable = dispatchTable;
-    pConfig->numRecords = NUM_COMMANDS;
 }
 
 int32_t CliReceiveAsync(void *pInfo, char *pData, uint32_t numBytes)

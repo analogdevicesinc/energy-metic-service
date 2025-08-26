@@ -1,5 +1,5 @@
 /******************************************************************************
- Copyright (c) 2024 - 2025  Analog Devices Inc.
+ Copyright (c) 2025  Analog Devices Inc.
 ******************************************************************************/
 
 /**
@@ -62,8 +62,6 @@ extern "C" {
 #define APP_CFG_NVM_NUM_SECTIONS 1
 /** NVM section size*/
 #define APP_CFG_NVM_SECTION_SIZE 0x00002000UL
-/** maximum string length*/
-#define APP_CFG_MAX_STRING_LENGTH 2048
 /** macro to enable host uart*/
 #define APP_CFG_ENABLE_HOST_UART 1
 /** UART Tx/Rx interrupt priority for host*/

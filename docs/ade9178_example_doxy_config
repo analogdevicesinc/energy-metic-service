@@ -38,7 +38,7 @@ PROJECT_NAME           = "Metrology Service Reference Manual"
 # could be handy for archiving the generated documentation or if some version
 # control system is used.
 
-PROJECT_NUMBER         = "Release 1.0.0"
+PROJECT_NUMBER         = "Release 1.1.0"
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer a
@@ -880,9 +880,9 @@ INPUT                  = ../docs \
                          ../interface/source \
                          ../interface/include \
 						 ../ade_registers/ade9178/include/ \
-                         ../ade_registers/ade91xx/include/ \ 
+                         ../ade_registers/ade91xx/include/ \
 
-            
+
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
 # libiconv (or the iconv built into libc) for the transcoding. See the libiconv
@@ -985,7 +985,8 @@ EXCLUDE_SYMLINKS       = NO
 # Note that the wildcards are matched against the file with absolute path, so to
 # exclude all test directories for example use the pattern */test/*
 
-EXCLUDE_PATTERNS       = *private*
+EXCLUDE_PATTERNS       = *private* \
+                         *rdef*
 
 # The EXCLUDE_SYMBOLS tag can be used to specify one or more symbol names
 # (namespaces, classes, functions, etc.) that should be excluded from the

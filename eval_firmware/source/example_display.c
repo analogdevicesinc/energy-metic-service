@@ -369,6 +369,7 @@ void DisplayWaveformOutput(void)
     int32_t numSamples;
     int32_t numBytes;
     ADI_METIC_STATUS syncStatus = 0;
+    ADI_CLI_HANDLE hCli;
     METIC_INSTANCE_INFO *pInfo = GetAdeInstance();
     int32_t *pWaveformData = &(pInfo->wfsBuffer[0]);
     int8_t *pBuffer;
@@ -415,8 +416,9 @@ void DisplayWaveformOutput(void)
                 }
                 do
                 {
-                    adi_cli_FlushMessages();
-                    freeSpace = adi_cli_GetFreeMessageSpace();
+                    hCli = GetCliHandle();
+                    adi_cli_FlushMessages(hCli);
+                    adi_cli_GetFreeMessageSpace(hCli, &freeSpace);
                 } while (freeSpace < MAX_MSG_STORAGE_SIZE_PER_CYCLE);
             }
         }

@@ -18,8 +18,8 @@
 #define __CLI_COMMANDS_H__
 
 /*============= I N C L U D E S =============*/
-#include "cli_interface.h"
-#include "cli_utils.h"
+#include "adi_cli.h"
+#include "adi_cli_utility.h"
 #include "metic_example.h"
 #include <complex.h>
 #include <stdbool.h>
